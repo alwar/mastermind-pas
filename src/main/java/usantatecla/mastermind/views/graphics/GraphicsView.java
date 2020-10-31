@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.controllers.StartController;
 import usantatecla.mastermind.views.View;
@@ -18,9 +18,8 @@ public class GraphicsView extends View {
 		this.gameView.interact(startController);
 	}
 
-	
-	public void visit(ProposalController proposalController) {
-		this.gameView.interact(proposalController);
+	public void visit(PlayController playController) {
+		throw new RuntimeException("Not implemented yet");
 	}
 
 	

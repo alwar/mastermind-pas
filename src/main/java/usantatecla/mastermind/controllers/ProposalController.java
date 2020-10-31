@@ -8,7 +8,7 @@ import usantatecla.mastermind.models.State;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 
-public class ProposalController extends Controller {
+public class ProposalController extends CompositeControllerLeaf {
 
 	public ProposalController(Game game, State state) {
 		super(game, state);
@@ -62,11 +62,6 @@ public class ProposalController extends Controller {
 
 	public int getWhites(int position) {
 		return this.game.getWhites(position);
-	}
-	
-	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
 	}
 
 }

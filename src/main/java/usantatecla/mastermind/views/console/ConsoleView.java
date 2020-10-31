@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.controllers.StartController;
 import usantatecla.mastermind.views.View;
@@ -9,13 +9,13 @@ public class ConsoleView extends View {
 	
 	private StartView startView;
 	
-	private ProposalView proposalView;
+	private PlayView playView;
 	
 	private ResumeView resumeView;
 	
 	public ConsoleView(){
 		this.startView = new StartView();
-		this.proposalView = new ProposalView();
+		this.playView = new PlayView();
 		this.resumeView = new ResumeView();
 	}
 
@@ -25,8 +25,8 @@ public class ConsoleView extends View {
 	}
 
 	
-	public void visit(ProposalController proposalController) {
-		this.proposalView.interact(proposalController);
+	public void visit(PlayController playController) {
+		this.playView.interact(playController);
 	}
 
 	
