@@ -1,18 +1,18 @@
 package usantatecla.mastermind.controllers;
 
-import usantatecla.mastermind.models.Game;
-import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.models.Session;
 
 public class RedoController extends CompositeControllerLeaf {
-    public RedoController(Game game, State state) {
-        super(game, state);
+
+    public RedoController(Session session) {
+        super(session);
     }
 
     public void redo() {
-        throw new RuntimeException("Not implemented yet");
+        this.session.redo();
     }
 
     public boolean redoable() {
-        return true;
+        return this.session.redoable();
     }
 }

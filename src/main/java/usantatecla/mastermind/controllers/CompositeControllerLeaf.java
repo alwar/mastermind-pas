@@ -1,15 +1,12 @@
 package usantatecla.mastermind.controllers;
 
-import usantatecla.mastermind.models.State;
-import usantatecla.mastermind.models.Game;
+import usantatecla.mastermind.models.Session;
 
 public abstract class CompositeControllerLeaf {
 
-    protected Game game;
-    protected State state;
+    protected Session session;
 
-    public CompositeControllerLeaf(Game game, State state) {
-        this.game = game;
-        this.state = state;
+    public CompositeControllerLeaf(Session session) {
+        this.session = session;
     }
 }

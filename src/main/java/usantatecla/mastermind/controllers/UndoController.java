@@ -1,18 +1,18 @@
 package usantatecla.mastermind.controllers;
 
-import usantatecla.mastermind.models.Game;
-import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.models.Session;
 
 public class UndoController extends CompositeControllerLeaf {
-    public UndoController(Game game, State state) {
-        super(game, state);
+
+    public UndoController(Session session) {
+        super(session);
     }
 
     public void undo() {
-        throw new RuntimeException("Not implemented yet");
+        this.session.undo();
     }
 
     public boolean undoable() {
-        return true;
+        return this.session.undoable();
     }
 }

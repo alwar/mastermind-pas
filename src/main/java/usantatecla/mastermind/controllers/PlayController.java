@@ -1,7 +1,6 @@
 package usantatecla.mastermind.controllers;
 
-import usantatecla.mastermind.models.Game;
-import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.models.Session;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 
@@ -12,11 +11,11 @@ public class PlayController extends Controller {
     private final RedoController redoController;
     private final ProposalController proposalController;
 
-    public PlayController(Game game, State state) {
-        super(game, state);
-        this.undoController = new UndoController(game, state);
-        this.redoController = new RedoController(game, state);
-        this.proposalController = new ProposalController(game, state);
+    PlayController(Session session) {
+        super(session);
+        this.undoController = new UndoController(session);
+        this.redoController = new RedoController(session);
+        this.proposalController = new ProposalController(session);
     }
 
     public Error addProposedCombination(List<Color> colors) {
