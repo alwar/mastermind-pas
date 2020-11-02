@@ -6,61 +6,33 @@ import usantatecla.mastermind.types.Error;
 
 import java.util.List;
 
-public class PlayController extends Controller {
-    private final UndoController undoController;
-    private final RedoController redoController;
-    private final ProposalController proposalController;
+public abstract class PlayController extends Controller {
 
-    PlayController(Session session) {
+    public PlayController(Session session) {
         super(session);
-        this.undoController = new UndoController(session);
-        this.redoController = new RedoController(session);
-        this.proposalController = new ProposalController(session);
     }
 
-    public Error addProposedCombination(List<Color> colors) {
-        return this.proposalController.addProposedCombination(colors);
-    }
+    public abstract Error addProposedCombination(List<Color> colors);
 
-    public boolean isWinner() {
-        return this.proposalController.isWinner();
-    }
+    public abstract boolean isWinner();
 
-    public boolean isLooser() {
-        return this.proposalController.isLooser();
-    }
+    public abstract boolean isLooser();
 
-    public int getAttempts() {
-        return this.proposalController.getAttempts();
-    }
+    public abstract int getAttempts();
 
-    public List<Color> getColors(int position) {
-        return this.proposalController.getColors(position);
-    }
+    public abstract List<Color> getColors(int position);
 
-    public int getBlacks(int position) {
-        return this.proposalController.getBlacks(position);
-    }
+    public abstract int getBlacks(int position);
 
-    public int getWhites(int position) {
-        return this.proposalController.getWhites(position);
-    }
+    public abstract int getWhites(int position);
 
-    public void undo() {
-        this.undoController.undo();
-    }
+    public abstract void undo();
 
-    public boolean undoable() {
-        return this.undoController.undoable();
-    }
+    public abstract boolean undoable();
 
-    public void redo() {
-        this.redoController.redo();
-    }
+    public abstract void redo();
 
-    public boolean redoable() {
-        return this.redoController.redoable();
-    }
+    public abstract boolean redoable();
 
     @Override
     public void accept(ControllersVisitor controllersVisitor) {

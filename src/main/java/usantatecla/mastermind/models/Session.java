@@ -4,76 +4,34 @@ import usantatecla.mastermind.types.Color;
 
 import java.util.List;
 
-public class Session {
-    private State state;
-    private Game game;
-    private GameRegistry registry;
+public interface Session {
+    StateValue getValueState();
 
-    public Session() {
-        this.state = new State();
-        this.game = new Game();
-        this.registry = new GameRegistry(game);
-    }
+    int getWidth();
 
-    public StateValue getValueState() {
-        return this.state.getValueState();
-    }
+    void next();
 
-    public int getWidth() {
-        return this.game.getWidth();
-    }
+    boolean undoable();
 
-    public void next() {
-        this.state.next();
-    }
+    void undo();
 
-    public boolean undoable() {
-        return this.registry.undoable();
-    }
+    void redo();
 
-    public void undo() {
-        this.registry.undo();
-    }
+    boolean redoable();
 
-    public void redo() {
-        this.registry.redo();
-    }
+    void addProposedCombination(List<Color> colors);
 
-    public boolean redoable() {
-        return this.registry.redoable();
-    }
+    boolean isWinner();
 
-    public void addProposedCombination(List<Color> colors) {
-        this.game.addProposedCombination(colors);
-        this.registry.register();
-    }
+    boolean isLooser();
 
-    public boolean isWinner() {
-        return this.game.isWinner();
-    }
+    int getAttempts();
 
-    public boolean isLooser() {
-        return this.game.isLooser();
-    }
+    List<Color> getColors(int position);
 
-    public int getAttempts() {
-        return this.game.getAttempts();
-    }
+    int getBlacks(int position);
 
-    public List<Color> getColors(int position) {
-        return this.game.getColors(position);
-    }
+    int getWhites(int position);
 
-    public int getBlacks(int position) {
-        return this.game.getBlacks(position);
-    }
-
-    public int getWhites(int position) {
-        return this.game.getWhites(position);
-    }
-
-    public void reset() {
-        this.state.reset();
-        this.game.clear();
-    }
+    void reset();
 }

@@ -12,8 +12,6 @@ import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 import usantatecla.mastermind.views.ErrorView;
 import usantatecla.mastermind.views.MessageView;
-import usantatecla.mastermind.views.graphics.ProposedCombinationView;
-import usantatecla.mastermind.views.graphics.SecretCombinationView;
 
 @SuppressWarnings("serial")
 class GameView extends JFrame {
@@ -51,7 +49,7 @@ class GameView extends JFrame {
 		Error error;
 		do {
 			List<Color> colors = new ProposedCombinationView().read(this.proposalCombinationView.getCharacters());
-			error = proposalController.addProposedCombination(colors);
+			error = proposalController.parseProposedCombination(colors);
 			if (error != null && this.proposalCombinationView.getCharacters() != "") {
 				JOptionPane.showMessageDialog(null, new ErrorView(error).getMessage(), "ERROR", JOptionPane.WARNING_MESSAGE);
 				error = null;

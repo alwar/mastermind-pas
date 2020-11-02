@@ -13,7 +13,7 @@ public class ProposalController extends CompositeControllerLeaf {
 		super(session);
 	}
 
-	public Error addProposedCombination(List<Color> colors) {
+	public Error parseProposedCombination(List<Color> colors) {
 		Error error = null;
 		if (colors.size() != Combination.getWidth()) {
 			error = Error.WRONG_LENGTH;
