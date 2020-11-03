@@ -76,5 +76,6 @@ public class LocalSession implements Session {
     public void reset() {
         this.state.reset();
         this.game.clear();
+        this.registry.reset();
     }
 }

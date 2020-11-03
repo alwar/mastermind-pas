@@ -6,6 +6,7 @@ import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 import usantatecla.utils.TCPIP;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayControllerProxy extends PlayController {
@@ -18,38 +19,53 @@ public class PlayControllerProxy extends PlayController {
 
     @Override
     public Error addProposedCombination(List<Color> colors) {
-        this.session.addProposedCombination(colors);
-        return null;
+        this.tcpip.send(FrameType.ADD_PROPOSED_COMBINATION.name());
+        return Error.valueOf(this.tcpip.receiveLine());
     }
 
     @Override
     public boolean isWinner() {
-        return this.session.isWinner();
+        this.tcpip.send(FrameType.GET_WINNER.name());
+        return this.tcpip.receiveBoolean();
     }
 
     @Override
     public boolean isLooser() {
-        return this.session.isLooser();
+        this.tcpip.send(FrameType.GET_LOOSER.name());
+        return this.tcpip.receiveBoolean();
     }
 
     @Override
     public int getAttempts() {
-        return this.session.getAttempts();
+        this.tcpip.send(FrameType.GET_ATTEMPTS.name());
+        return this.tcpip.receiveInt();
     }
 
     @Override
     public List<Color> getColors(int position) {
-        return this.session.getColors(position);
+        int width = this.getWidth();
+
+        this.tcpip.send(FrameType.GET_COLORS.name());
+        this.tcpip.send(position);
+
+        List<Color> list = new ArrayList<>();
+        for(int i = 0; i< width; i++) {
+            list.add(Color.valueOf(this.tcpip.receiveLine()));
+        }
+
+        return list;
     }
 
     @Override
     public int getBlacks(int position) {
-        return this.session.getBlacks(position);
+        this.tcpip.send(FrameType.GET_BLACKS.name());
+        return this.tcpip.receiveInt();
     }
 
     @Override
     public int getWhites(int position) {
-        return this.session.getWhites(position);
+        this.tcpip.send(FrameType.GET_WHITES.name());
+        return this.tcpip.receiveInt();
     }
 
     @Override

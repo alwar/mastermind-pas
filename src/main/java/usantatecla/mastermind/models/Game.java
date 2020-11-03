@@ -46,7 +46,9 @@ public class Game {
 	}
 	
 	public boolean isWinner() {
-		return this.results.get(this.getAttempts()-1).isWinner();
+		int attempts = this.getAttempts();
+
+		return (attempts > 0) && this.results.get(attempts - 1).isWinner();
 	}
 
 	public int getAttempts() {

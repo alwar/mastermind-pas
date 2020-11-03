@@ -10,8 +10,7 @@ public class GameRegistry {
 
     public GameRegistry(Game game) {
         this.game = game;
-        this.gameMementoList = new ArrayList<>();
-        this.currentPosition = 0;
+        this.reset();
     }
 
     public boolean undoable() {
@@ -38,5 +37,10 @@ public class GameRegistry {
         }
         this.currentPosition++;
         this.gameMementoList.add(this.game.createMemento());
+    }
+
+    public void reset() {
+        this.gameMementoList = new ArrayList<>();
+        this.currentPosition = 0;
     }
 }

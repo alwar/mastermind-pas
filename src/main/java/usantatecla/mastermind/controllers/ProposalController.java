@@ -3,14 +3,18 @@ package usantatecla.mastermind.controllers;
 import java.util.List;
 
 import usantatecla.mastermind.models.Combination;
+import usantatecla.mastermind.models.LocalSession;
 import usantatecla.mastermind.models.Session;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 
 public class ProposalController extends CompositeControllerLeaf {
 
+	protected LocalSession session;
+
 	public ProposalController(Session session) {
 		super(session);
+		this.session = (LocalSession) session;
 	}
 
 	public Error parseProposedCombination(List<Color> colors) {
