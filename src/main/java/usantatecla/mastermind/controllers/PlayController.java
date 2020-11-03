@@ -26,13 +26,21 @@ public abstract class PlayController extends Controller {
 
     public abstract int getWhites(int position);
 
-    public abstract void undo();
+    public void undo() {
+        this.session.undo();
+    }
 
-    public abstract boolean undoable();
+    public void redo() {
+        this.session.redo();
+    }
 
-    public abstract void redo();
+    public boolean undoable() {
+        return this.session.undoable();
+    }
 
-    public abstract boolean redoable();
+    public boolean redoable() {
+        return this.session.redoable();
+    }
 
     @Override
     public void accept(ControllersVisitor controllersVisitor) {

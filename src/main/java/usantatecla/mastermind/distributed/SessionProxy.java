@@ -28,11 +28,6 @@ public class SessionProxy implements Session {
     }
 
     @Override
-    public void next() {
-        this.tcpip.send(FrameType.STATE_NEXT.name());
-    }
-
-    @Override
     public boolean undoable() {
         this.tcpip.send(FrameType.UNDOABLE.name());
         return this.tcpip.receiveBoolean();

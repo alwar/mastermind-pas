@@ -5,8 +5,6 @@ public interface Session {
 
     int getWidth();
 
-    void next();
-
     boolean undoable();
 
     void undo();

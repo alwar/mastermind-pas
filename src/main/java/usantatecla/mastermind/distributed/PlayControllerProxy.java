@@ -19,8 +19,18 @@ public class PlayControllerProxy extends PlayController {
 
     @Override
     public Error addProposedCombination(List<Color> colors) {
+        int width = this.getWidth();
         this.tcpip.send(FrameType.ADD_PROPOSED_COMBINATION.name());
-        return Error.valueOf(this.tcpip.receiveLine());
+        for (int i=0; i<width; i++) {
+            this.tcpip.send(colors.get(i).name());
+        }
+
+        String error = this.tcpip.receiveLine();
+        if ("null".equals(error)) {
+            return null;
+        }
+
+        return Error.valueOf(error);
     }
 
     @Override
@@ -59,32 +69,16 @@ public class PlayControllerProxy extends PlayController {
     @Override
     public int getBlacks(int position) {
         this.tcpip.send(FrameType.GET_BLACKS.name());
+        this.tcpip.send(position);
+
         return this.tcpip.receiveInt();
     }
 
     @Override
     public int getWhites(int position) {
         this.tcpip.send(FrameType.GET_WHITES.name());
+        this.tcpip.send(position);
+
         return this.tcpip.receiveInt();
-    }
-
-    @Override
-    public void undo() {
-        this.session.undo();
-    }
-
-    @Override
-    public void redo() {
-        this.session.redo();
-    }
-
-    @Override
-    public boolean undoable() {
-        return this.session.undoable();
-    }
-
-    @Override
-    public boolean redoable() {
-        return this.session.redoable();
     }
 }

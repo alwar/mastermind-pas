@@ -16,9 +16,6 @@ public enum FrameType {
 	STATE,
 	START,
 	NEW_GAME,
-	STATE_NEXT,
-	RESET,
-
 	CLOSE;
 
 	public static FrameType parser(String string) {
